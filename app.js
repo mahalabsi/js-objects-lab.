@@ -65,3 +65,22 @@ console.log(game)
 const pokemonsss = pokemon.find((pokemon) => pokemon.type === 'bug')
 game.party = pokemonsss
 console.log(game)
+
+// honestly I HAD no idea how to do it anyother way. just used the easiest way out ;)
+
+/*
+Exercise 6
+1. Set the `completed` property to true for gyms with a difficulty below 3.
+2. Think about how you'd loop through the `gyms` array to check and update the `completed` property.
+
+
+Solve Exercise 6 here:
+*/
+
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 3) {
+    gym.completed = true
+  }
+})
+
+console.log(game.gyms)
