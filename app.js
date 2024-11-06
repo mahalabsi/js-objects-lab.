@@ -43,10 +43,12 @@ Exercise 4
 
 Solve Exercise 4 here:
 */
-const pokemonTwo = pokemon[0]
-console.log(pokemonTwo.starter)
-game.party = pokemonTwo
-console.log(game)
+const starterPokemon = pokemon.filter((pokemon) => pokemon.starter)[0]
+game.party.push(starterPokemon)
+// const pokemonTwo = pokemon[0]
+// console.log(pokemonTwo.starter)
+// game.party = pokemonTwo
+// console.log(game)
 
 /*
 Exercise 5
@@ -56,15 +58,27 @@ Exercise 5
 
 Solve Exercise 5 here:
 */
-const pokemons = pokemon.find((pokemon) => pokemon.type === 'water')
-game.party = pokemons
-console.log(game)
-const pokemonss = pokemon.find((pokemon) => pokemon.type === 'fire')
-game.party = pokemonss
-console.log(game)
-const pokemonsss = pokemon.find((pokemon) => pokemon.type === 'bug')
-game.party = pokemonsss
-console.log(game)
+
+// this is me at 00:40 finding out that ex5 was done VERY INCORREctly. so I decided on the sliiice approach hehehe . yes yes we didnt cover it in class but wallah it works
+
+const startPokemon = pokemon.find((pokemon) => pokemon.starter)
+
+const newPokemon = pokemon
+  .filter((pokemon) => pokemon.hp > startPokemon.hp)
+  .sort((a, b) => b.hp - a.hp)
+  .slice(0, 3)
+
+game.party.push(starterPokemon, ...newPokemon)
+
+// const pokemons = pokemon.find((pokemon) => pokemon.type === 'water')
+// game.party = pokemons
+// console.log(game)
+// const pokemonss = pokemon.find((pokemon) => pokemon.type === 'fire')
+// game.party = pokemonss
+// console.log(game)
+// const pokemonsss = pokemon.find((pokemon) => pokemon.type === 'bug')
+// game.party = pokemonsss
+// console.log(game)
 
 // honestly I HAD no idea how to do it anyother way. just used the easiest way out ;)
 
@@ -82,5 +96,43 @@ game.gyms.forEach((gym) => {
     gym.completed = true
   }
 })
-
 console.log(game.gyms)
+
+/*
+Exercise 7
+1. Evolve the starter Pokémon you added to your party earlier. Each starter Pokémon evolves into a specific one.
+2. How would you replace the current starter Pokémon in your party with its evolved form?
+
+Hint: 
+  - Pokemon 1: Bulbasaur evolves into Pokemon 2: Ivysaur
+  - Pokemon 4: Charmander evolves into Pokemon 5: Charmeleon
+  - Pokemon 7: Squirtle evolves into Pokemon 8: Wartortle
+  - Pokemon 25: Pikachu evolves into Pokemon 26: Raichu
+
+More Hints: The existing starter Pokemon will be *replaced* in your party with the Pokemon it evolved into. When working with an array of objects, the splice() array method is ideal for replacing one element with another. 
+
+
+Solve Exercise 7 here:
+*/
+// Find the index of the starter Pokémon in the party
+const starterIndex = game.party.findIndex((pokemon) => pokemon.starter)
+
+const newForm = {
+  1: pokemon[1],
+  4: pokemon[4],
+  7: pokemon[7],
+  25: pokemon[25]
+}
+game.party.splice(starterIndex, 1, newForm[game.party[starterIndex].number])
+console.log(game.party)
+
+/*
+Exercise 8
+1. Print the name of each Pokémon in your party.
+2. Consider using a loop or an array method to access each Pokémon's name.
+
+Solve Exercise 8 here:
+*/
+game.party.forEach((pokemon) => {
+  console.log(pokemon.name)
+})
