@@ -146,7 +146,25 @@ Exercise 9
 Solve Exercise 9 here:
 */
 const startersPokemon = pokemon.filter((pokemon) => pokemon.starter)
-
+//love this filter very handy
 startersPokemon.forEach((pokemon) => {
   console.log(pokemon.name)
 })
+
+/*
+Exercise 10
+Create a method called `catchPokemon` and add it to the `game` object. You should not need to edit the original game object directly. This method should:
+  - Accept an object as a parameter called `pokemonObj`
+  - Add the `pokemonObj` to the `game.party` array.
+  - not return anything
+
+After writing this method, call it and pass in a Pokemon object of your choice from the `pokemon` data to catch it.
+
+Solve Exercise 10 here:
+*/
+game.catchPokemon = (pokemonObj) => {
+  game.party.push(pokemonObj)
+}
+const thePokemon = pokemon[5]
+game.catchPokemon(thePokemon)
+console.log(game.party)
